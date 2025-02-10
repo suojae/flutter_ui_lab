@@ -20,8 +20,8 @@ class _ThreeDButtonScreenState extends State<ThreeDButtonScreen> with SingleTick
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 150),
-      reverseDuration: const Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 10),
+      reverseDuration: const Duration(milliseconds: 20),
     );
 
     _scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
@@ -75,7 +75,7 @@ class _ThreeDButtonScreenState extends State<ThreeDButtonScreen> with SingleTick
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("PhysicalModel", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            const Text("Material (Elevation)", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             GestureDetector(
               onTapDown: _onTapDown,
@@ -87,12 +87,11 @@ class _ThreeDButtonScreenState extends State<ThreeDButtonScreen> with SingleTick
                 builder: (context, child) {
                   return Transform.scale(
                     scale: _scaleAnimation.value,
-                    child: AnimatedPhysicalModel(
-                      duration: const Duration(milliseconds: 200),
-                      shape: BoxShape.circle,
-                      color: Colors.amber,
-                      elevation: _elevationAnimation.value,
+                    child: Material(
+                      elevation: _elevationAnimation.value, 
                       shadowColor: Colors.black54,
+                      shape: const CircleBorder(),
+                      color: Colors.amber,
                       child: SizedBox(
                         width: 120,
                         height: 120,
